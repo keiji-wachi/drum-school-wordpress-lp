@@ -1,0 +1,53 @@
+/**
+ * Drum School LP
+ *
+ * LP全体のスタイル。
+ *
+ * CSS設計方針
+ * - クラス名はBEMを基本とする
+ * - LP外への影響を極力避ける
+ * - PC / Tablet / SP のレスポンシブ対応
+ */
+
+
+/* =========================
+   Base
+========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* =========================
+   Hero
+========================= */
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero__title {
+    font-size: 48px;
+}
+
+.hero__cta {
+    display: inline-block;
+    margin-top: 24px;
+    padding: 16px 32px;
+    background: #111;
+    color: #fff;
+    text-decoration: none;
+}

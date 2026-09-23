@@ -1,3 +1,7 @@
-<?php
+<?php get_header(); ?>
 
-echo 'Drum School LP Theme';
+<main>
+    <p>Drum School LP</p>
+</main>
+
+<?php get_footer(); ?>
