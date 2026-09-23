@@ -12,3 +12,21 @@
 
 ## Status
 Under development.
+
+## Theme Structure
+
+```text
+drum-school-lp/
+├─ assets/
+│  ├─ css/
+│  │  └─ lp.css
+│  ├─ js/
+│  │  └─ lp.js
+│  └─ images/
+│
+├─ front-page.php
+├─ header.php
+├─ footer.php
+├─ functions.php
+├─ index.php
+└─ style.css
