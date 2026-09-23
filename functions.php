@@ -18,6 +18,14 @@ function drum_school_lp_enqueue_assets() {
         'hero',
         'trial-bar',
         'features',
+        'flow',
+        'pricing',
+        'instructor',
+        'voice',
+        'faq',
+        'final-cta',
+        'contact',
+        'footer',
     );
 
     foreach ($styles as $style) {
@@ -33,6 +41,14 @@ function drum_school_lp_enqueue_assets() {
     wp_enqueue_script(
         'drum-school-lp',
         $theme_uri . '/assets/js/lp.js',
+        array(),
+        '1.0.0',
+        true
+    );
+
+    wp_enqueue_script(
+        'drum-school-faq',
+        $theme_uri . '/assets/js/faq.js',
         array(),
         '1.0.0',
         true

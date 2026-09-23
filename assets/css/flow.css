@@ -1,0 +1,256 @@
+/**
+ * Flow
+ *
+ * 無料体験レッスンの
+ * 申し込みから体験までの流れ。
+ */
+
+
+/* =========================
+   Flow
+========================= */
+
+.flow {
+    position: relative;
+
+    background: var(--color-surface);
+}
+
+
+/* =========================
+   Step List
+========================= */
+
+.flow__list {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 24px;
+}
+
+
+/*
+ * PCではカード同士を線でつなぎ、
+ * 申し込みの流れを視覚的に表現する。
+ */
+.flow__list::before {
+    content: "";
+
+    position: absolute;
+
+    top: 78px;
+    left: 10%;
+    right: 10%;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--color-border) 10%,
+            var(--color-border) 90%,
+            transparent
+        );
+}
+
+
+/* =========================
+   Step Card
+========================= */
+
+.flow-card {
+    position: relative;
+
+    z-index: 1;
+
+    padding: 32px 24px 36px;
+
+    text-align: center;
+
+    background: #0d0d0d;
+
+    border:
+        1px solid var(--color-border);
+
+    transition:
+        border-color 0.25s ease,
+        transform 0.25s ease,
+        background 0.25s ease;
+}
+
+.flow-card:hover {
+    transform: translateY(-4px);
+
+    border-color:
+        rgba(242, 56, 0, 0.7);
+
+    background: #101010;
+}
+
+
+/* =========================
+   Step Number
+========================= */
+
+.flow-card__number {
+    margin-bottom: 22px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    line-height: 1;
+}
+
+.flow-card__number span {
+    margin-bottom: 5px;
+
+    color: var(--color-muted);
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 0.15em;
+}
+
+.flow-card__number strong {
+    color: var(--color-accent);
+
+    font-size: 34px;
+    font-weight: 900;
+}
+
+
+/* =========================
+   Icon
+========================= */
+
+.flow-card__icon {
+    width: 64px;
+    height: 64px;
+
+    margin: 0 auto 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border:
+        1px solid var(--color-border);
+
+    border-radius: 50%;
+
+    background: var(--color-bg);
+
+    font-size: 28px;
+}
+
+
+/* =========================
+   Content
+========================= */
+
+.flow-card__title {
+    margin: 0;
+
+    font-size: 18px;
+
+    line-height: 1.5;
+}
+
+.flow-card__text {
+    margin: 14px 0 0;
+
+    color: var(--color-muted);
+
+    font-size: 13px;
+
+    line-height: 1.9;
+}
+
+
+/* =========================
+   CTA
+========================= */
+
+.flow__action {
+    margin-top: 56px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 14px;
+}
+
+.flow__note {
+    margin: 0;
+
+    color: var(--color-muted);
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   Tablet
+========================= */
+
+@media (max-width: 900px) {
+
+    .flow__list {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .flow__list::before {
+        display: none;
+    }
+}
+
+
+/* =========================
+   Smartphone
+========================= */
+
+@media (max-width: 600px) {
+
+    .flow__list {
+        grid-template-columns: 1fr;
+
+        gap: 16px;
+    }
+
+    .flow-card {
+        padding: 28px 22px;
+
+        text-align: left;
+    }
+
+    .flow-card__number {
+        align-items: flex-start;
+    }
+
+    .flow-card__icon {
+        margin:
+            0 0 20px;
+    }
+
+    .flow__action {
+        margin-top: 40px;
+    }
+
+    .flow__action .button {
+        width: 100%;
+    }
+
+    .flow__note {
+        text-align: center;
+    }
+}

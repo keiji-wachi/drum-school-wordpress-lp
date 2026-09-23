@@ -2,6 +2,8 @@
  * Hero / First View
  *
  * LP訪問直後に表示されるメインビジュアル。
+ * 左側で訴求文を読ませ、
+ * 右側にドラム写真を見せる構成。
  */
 
 
@@ -18,16 +20,26 @@
     display: flex;
     align-items: center;
 
-    background:
+    background-image:
         linear-gradient(
             90deg,
-            rgba(5, 5, 5, 0.98) 0%,
-            rgba(5, 5, 5, 0.88) 35%,
-            rgba(5, 5, 5, 0.45) 65%,
-            rgba(5, 5, 5, 0.28) 100%
+            rgba(5, 5, 5, 0.96) 0%,
+            rgba(5, 5, 5, 0.90) 30%,
+            rgba(5, 5, 5, 0.72) 48%,
+            rgba(5, 5, 5, 0.40) 68%,
+            rgba(5, 5, 5, 0.10) 100%
         ),
-        url("../images/hero-drum.jpg")
-        center / cover no-repeat;
+        url("../images/hero-drum.jpg");
+
+    background-size: cover;
+
+    /*
+     * 画像の主役であるドラムを
+     * 右側に見せるため少し右寄せ。
+     */
+    background-position: 65% center;
+
+    background-repeat: no-repeat;
 }
 
 
@@ -35,6 +47,10 @@
    Overlay
 ========================= */
 
+/*
+ * 下側を少し暗くして、
+ * CTA・補足テキストまで読みやすくする。
+ */
 .hero__overlay {
     position: absolute;
 
@@ -43,8 +59,9 @@
     background:
         linear-gradient(
             180deg,
-            rgba(0, 0, 0, 0.05) 50%,
-            rgba(0, 0, 0, 0.7) 100%
+            rgba(0, 0, 0, 0.02) 45%,
+            rgba(0, 0, 0, 0.22) 72%,
+            rgba(0, 0, 0, 0.72) 100%
         );
 
     pointer-events: none;
@@ -67,7 +84,9 @@
 
     margin: 0 auto;
 
-    padding: 96px 0 120px;
+    padding:
+        96px 0
+        120px;
 }
 
 .hero__content {
@@ -85,17 +104,26 @@
 .hero__badge {
     width: fit-content;
 
-    margin: 0 0 26px;
+    margin:
+        0 0
+        26px;
 
-    padding: 8px 14px;
+    padding:
+        8px 14px;
 
     border:
-        1px solid rgba(255, 212, 0, 0.5);
+        1px solid
+        rgba(255, 212, 0, 0.5);
+
+    background:
+        rgba(0, 0, 0, 0.28);
 
     color: var(--color-label);
 
     font-size: 13px;
     font-weight: 700;
+
+    backdrop-filter: blur(4px);
 }
 
 .hero__badge-dot {
@@ -108,7 +136,8 @@
 
     border-radius: 50%;
 
-    background: var(--color-label);
+    background:
+        var(--color-label);
 }
 
 
@@ -122,45 +151,86 @@
     display: flex;
     flex-direction: column;
 
+    width: fit-content;
+
     font-family:
         Impact,
         "Arial Black",
         sans-serif;
 
     font-size:
-        clamp(64px, 7vw, 104px);
+        clamp(
+            64px,
+            7vw,
+            104px
+        );
 
     line-height: 0.88;
 
     letter-spacing: 0.01em;
+
+    text-shadow:
+        0 4px 24px
+        rgba(0, 0, 0, 0.35);
 }
 
 .hero__title-accent {
-    color: var(--color-accent);
+    color:
+        var(--color-accent);
 }
 
 
 /* =========================
-   Text
+   Lead Text
 ========================= */
 
 .hero__lead {
-    margin: 38px 0 0;
+    margin:
+        38px 0
+        0;
+
+    max-width: 580px;
+
+    color:
+        var(--color-text);
 
     font-size:
-        clamp(17px, 1.6vw, 22px);
+        clamp(
+            17px,
+            1.6vw,
+            22px
+        );
 
     font-weight: 700;
 
     line-height: 1.8;
+
+    text-shadow:
+        0 2px 12px
+        rgba(0, 0, 0, 0.55);
 }
 
-.hero__subtext {
-    margin: 18px 0 0;
 
-    color: var(--color-muted);
+/* =========================
+   Sub Text
+========================= */
+
+.hero__subtext {
+    margin:
+        18px 0
+        0;
+
+    max-width: 560px;
+
+    color: #b5b5b5;
 
     font-size: 14px;
+
+    line-height: 1.8;
+
+    text-shadow:
+        0 2px 10px
+        rgba(0, 0, 0, 0.55);
 }
 
 
@@ -183,7 +253,9 @@
 ========================= */
 
 .hero__benefits {
-    margin: 28px 0 0;
+    margin:
+        28px 0
+        0;
 
     padding: 0;
 
@@ -197,6 +269,10 @@
     color: #d0d0d0;
 
     font-size: 13px;
+
+    text-shadow:
+        0 2px 8px
+        rgba(0, 0, 0, 0.5);
 }
 
 
@@ -232,7 +308,8 @@
     width: 1px;
     height: 32px;
 
-    background: #555555;
+    background:
+        #555555;
 }
 
 
@@ -245,12 +322,29 @@
     .hero {
         min-height: 800px;
 
+        background-image:
+            linear-gradient(
+                90deg,
+                rgba(5, 5, 5, 0.95) 0%,
+                rgba(5, 5, 5, 0.80) 48%,
+                rgba(5, 5, 5, 0.40) 72%,
+                rgba(5, 5, 5, 0.18) 100%
+            ),
+            url("../images/hero-drum.jpg");
+
         background-position:
-            65% center;
+            68% center;
     }
 
     .hero__inner {
         padding-top: 100px;
+    }
+
+    .hero__content {
+        width: min(
+            100%,
+            590px
+        );
     }
 }
 
@@ -262,19 +356,40 @@
 @media (max-width: 600px) {
 
     .hero {
-        min-height: 720px;
+        min-height: 760px;
 
         align-items: flex-end;
 
+        /*
+         * SPでは写真を上部に見せ、
+         * 下側を暗くして文字を配置する。
+         */
+        background-image:
+            linear-gradient(
+                180deg,
+                rgba(5, 5, 5, 0.10) 0%,
+                rgba(5, 5, 5, 0.28) 28%,
+                rgba(5, 5, 5, 0.72) 54%,
+                rgba(5, 5, 5, 0.97) 76%,
+                rgba(5, 5, 5, 1) 100%
+            ),
+            url("../images/hero-drum.jpg");
+
+        background-position:
+            62% center;
+
+        background-size:
+            cover;
+    }
+
+    .hero__overlay {
         background:
             linear-gradient(
                 180deg,
-                rgba(5, 5, 5, 0.25) 0%,
-                rgba(5, 5, 5, 0.65) 42%,
-                rgba(5, 5, 5, 0.98) 78%
-            ),
-            url("../images/hero-drum.jpg")
-            60% center / cover no-repeat;
+                transparent 40%,
+                rgba(0, 0, 0, 0.15) 62%,
+                rgba(0, 0, 0, 0.65) 100%
+            );
     }
 
     .hero__inner {
@@ -284,18 +399,25 @@
         );
 
         padding:
-            100px 0 80px;
+            150px 0
+            72px;
     }
 
     .hero__content {
         width: 100%;
     }
 
+
+    /* Badge */
+
     .hero__badge {
         margin-bottom: 20px;
 
         font-size: 12px;
     }
+
+
+    /* Title */
 
     .hero__title {
         font-size:
@@ -305,6 +427,9 @@
                 78px
             );
     }
+
+
+    /* Text */
 
     .hero__lead {
         margin-top: 28px;
@@ -320,15 +445,29 @@
         font-size: 12px;
     }
 
+
+    /* Actions */
+
     .hero__actions {
+        margin-top: 30px;
+
         flex-direction: column;
+
+        gap: 12px;
     }
 
+
+    /* Benefits */
+
     .hero__benefits {
-        gap: 12px;
+        gap:
+            8px 14px;
 
         font-size: 12px;
     }
+
+
+    /* Scroll */
 
     .hero__scroll {
         display: none;

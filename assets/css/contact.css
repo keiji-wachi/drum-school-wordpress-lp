@@ -1,0 +1,456 @@
+/**
+ * Contact
+ *
+ * 無料体験・相談フォームセクション。
+ *
+ * 現在は静的コーディング用。
+ * 後続IssueでContact Form 7の
+ * 5STEPフォームへ置き換える。
+ */
+
+
+/* =========================
+   Contact
+========================= */
+
+.contact {
+    position: relative;
+
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(242, 56, 0, 0.06),
+            transparent 35%
+        ),
+        var(--color-bg);
+}
+
+
+/* =========================
+   Form Container
+========================= */
+
+.contact-form {
+    width: min(
+        100%,
+        760px
+    );
+
+    margin: 0 auto;
+
+    padding: 44px;
+
+    border:
+        1px solid var(--color-border);
+
+    background: #0d0d0d;
+
+    box-shadow:
+        0 30px 80px
+        rgba(0, 0, 0, 0.25);
+}
+
+
+/* =========================
+   Progress
+========================= */
+
+.contact-progress {
+    margin-bottom: 46px;
+}
+
+.contact-progress__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 24px;
+
+    margin-bottom: 14px;
+}
+
+.contact-progress__step {
+    color: var(--color-muted);
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 0.1em;
+}
+
+.contact-progress__name {
+    color: var(--color-accent);
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+/* Bar */
+
+.contact-progress__bar {
+    position: relative;
+
+    width: 100%;
+    height: 3px;
+
+    overflow: hidden;
+
+    background: #252525;
+}
+
+.contact-progress__current {
+    display: block;
+
+    height: 100%;
+
+    background: var(--color-accent);
+}
+
+
+/* Five Steps */
+
+.contact-progress__steps {
+    margin-top: 9px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap: 8px;
+}
+
+.contact-progress__steps span {
+    height: 2px;
+
+    background: #252525;
+}
+
+.contact-progress__steps span.is-active {
+    background: var(--color-accent);
+}
+
+
+/* =========================
+   Step Heading
+========================= */
+
+.contact-step__heading {
+    margin-bottom: 28px;
+}
+
+.contact-step__number {
+    margin: 0 0 8px;
+
+    color: var(--color-accent);
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 0.12em;
+}
+
+.contact-step__title {
+    margin: 0;
+
+    font-size: 24px;
+
+    line-height: 1.5;
+}
+
+.contact-step__description {
+    margin: 8px 0 0;
+
+    color: var(--color-muted);
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   Option Grid
+========================= */
+
+.contact-options {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 12px;
+}
+
+
+/* =========================
+   Option
+========================= */
+
+.contact-option {
+    position: relative;
+
+    cursor: pointer;
+}
+
+.contact-option input {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+
+/* Content */
+
+.contact-option__content {
+    min-height: 112px;
+
+    padding: 18px;
+
+    display: flex;
+    flex-direction: column;
+
+    border:
+        1px solid var(--color-border);
+
+    background: #101010;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.contact-option:hover
+.contact-option__content {
+    border-color: #5a5a5a;
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* Selected */
+
+.contact-option input:checked
++ .contact-option__content {
+    border-color:
+        var(--color-accent);
+
+    background:
+        rgba(242, 56, 0, 0.08);
+
+    box-shadow:
+        inset 0 0 0 1px
+        rgba(242, 56, 0, 0.18);
+}
+
+
+/* Keyboard Focus */
+
+.contact-option input:focus-visible
++ .contact-option__content {
+    outline:
+        2px solid
+        var(--color-label);
+
+    outline-offset: 3px;
+}
+
+
+/* Icon */
+
+.contact-option__icon {
+    margin-bottom: 10px;
+
+    font-size: 24px;
+
+    line-height: 1;
+}
+
+
+/* Title */
+
+.contact-option__content strong {
+    color: var(--color-text);
+
+    font-size: 14px;
+}
+
+
+/* Description */
+
+.contact-option__content small {
+    margin-top: 5px;
+
+    color: var(--color-muted);
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================
+   Other Field
+========================= */
+
+.contact-field {
+    margin-top: 26px;
+}
+
+.contact-field__label {
+    display: block;
+
+    margin-bottom: 9px;
+
+    color: #d0d0d0;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.contact-field__label span {
+    margin-left: 6px;
+
+    color: var(--color-muted);
+
+    font-size: 10px;
+    font-weight: 400;
+}
+
+.contact-field__textarea {
+    width: 100%;
+
+    min-height: 110px;
+
+    padding: 16px;
+
+    resize: vertical;
+
+    border:
+        1px solid var(--color-border);
+
+    border-radius: 0;
+
+    outline: none;
+
+    background: #151515;
+
+    color: var(--color-text);
+
+    font: inherit;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+.contact-field__textarea::placeholder {
+    color: #666666;
+}
+
+.contact-field__textarea:focus {
+    border-color:
+        var(--color-accent);
+
+    background: #181818;
+}
+
+
+/* =========================
+   Actions
+========================= */
+
+.contact-step__actions {
+    margin-top: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 24px;
+}
+
+.contact-step__note {
+    margin: 0;
+
+    color: #676767;
+
+    font-size: 10px;
+}
+
+.contact-step__next {
+    flex-shrink: 0;
+
+    min-width: 150px;
+
+    border: 0;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   Tablet
+========================= */
+
+@media (max-width: 900px) {
+
+    .contact-form {
+        padding: 38px;
+    }
+}
+
+
+/* =========================
+   Smartphone
+========================= */
+
+@media (max-width: 600px) {
+
+    .contact-form {
+        padding:
+            28px 20px;
+    }
+
+    .contact-progress {
+        margin-bottom: 36px;
+    }
+
+    .contact-step__title {
+        font-size: 20px;
+    }
+
+    .contact-options {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-option__content {
+        min-height: auto;
+    }
+
+    .contact-step__actions {
+        flex-direction: column-reverse;
+
+        align-items: stretch;
+
+        gap: 16px;
+    }
+
+    .contact-step__note {
+        text-align: center;
+    }
+
+    .contact-step__next {
+        width: 100%;
+    }
+}
