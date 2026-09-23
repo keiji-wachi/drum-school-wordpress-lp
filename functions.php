@@ -16,9 +16,6 @@
 /**
  * Contact Form 7
  * カスタムバリデーションを読み込む。
- *
- * JavaScript側だけではなく、
- * PHP / CF7側でも入力値を検証する。
  */
 require_once get_template_directory()
     . '/inc/cf7-validation.php';
@@ -29,14 +26,12 @@ require_once get_template_directory()
 ================================================== */
 
 /**
- * LPで使用するCSS / JavaScriptを読み込む。
- *
- * CSSは責務ごとに分割し、
- * WordPress標準のenqueue機能で読み込む。
+ * テーマで使用するCSS / JavaScriptを読み込む。
  */
 function drum_school_lp_enqueue_assets() {
 
-    $theme_uri = get_template_directory_uri();
+    $theme_uri =
+        get_template_directory_uri();
 
 
     /* =========================
@@ -78,6 +73,28 @@ function drum_school_lp_enqueue_assets() {
 
 
     /* =========================
+       Thanks Page CSS
+    ========================== */
+
+    /**
+     * サンクスページ専用CSS。
+     *
+     * /thanks/ の場合のみ読み込む。
+     */
+    if (is_page('thanks')) {
+
+        wp_enqueue_style(
+            'drum-school-thanks',
+            $theme_uri
+                . '/assets/css/thanks.css',
+            array(),
+            '1.0.0'
+        );
+
+    }
+
+
+    /* =========================
        JavaScript
     ========================== */
 
@@ -110,12 +127,6 @@ function drum_school_lp_enqueue_assets() {
     /**
      * Contact Form 7
      * 5STEPフォーム制御。
-     *
-     * - 次へ
-     * - 戻る
-     * - 入力値保持
-     * - STEP表示切り替え
-     * - クライアント側バリデーション
      */
     wp_enqueue_script(
         'drum-school-multi-step-form',
@@ -124,6 +135,22 @@ function drum_school_lp_enqueue_assets() {
         array(),
         '1.0.0',
         true
+    );
+
+
+    /**
+     * JavaScriptへWordPress側のURLを渡す。
+     *
+     * JSにローカルURLや本番URLを
+     * 直接書かないための設定。
+     */
+    wp_localize_script(
+        'drum-school-multi-step-form',
+        'drumSchoolFormConfig',
+        array(
+            'thanksUrl' =>
+                home_url('/thanks/'),
+        )
     );
 
 }
@@ -144,7 +171,8 @@ add_action(
 function drum_school_lp_setup() {
 
     /**
-     * <title>をWordPress側で管理する。
+     * ページタイトルを
+     * WordPress側で管理する。
      */
     add_theme_support(
         'title-tag'
