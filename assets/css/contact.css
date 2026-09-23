@@ -6,8 +6,15 @@
  * Contact Form 7を送信基盤として使用し、
  * JavaScriptで1フォーム5STEP表示にしている。
  *
- * CF7が生成するHTMLに対して
- * BEATLABのデザインを適用する。
+ * STEP1〜4のcheckbox / radioは
+ * ネイティブUIを視覚的に隠し、
+ * カード自体を選択UIとして使用する。
+ *
+ * STEP1アイコンはCF7へSVGを直接記述せず、
+ * CSS Maskを使用してSVG表示する。
+ *
+ * 個人情報同意用checkboxのみ
+ * 明示的なチェックUIを残す。
  */
 
 
@@ -37,12 +44,14 @@
 
     margin: 0 auto;
 
-    padding: 28px 32px;
+    padding: 30px 32px;
 
     border:
-        1px solid var(--color-border);
+        1px solid
+        var(--color-border);
 
-    background: #0d0d0d;
+    background:
+        #0d0d0d;
 
     box-shadow:
         0 30px 80px
@@ -51,8 +60,8 @@
 
 
 /*
- * JavaScriptではhidden属性を使って
- * STEP1〜5の表示を切り替えている。
+ * JavaScriptでSTEP1〜5を
+ * hidden属性によって切り替える。
  */
 .contact-form [hidden] {
     display: none !important;
@@ -63,26 +72,11 @@
    CF7 Auto Formatting Reset
 ================================================== */
 
-/*
- * Contact Form 7はフォーム編集画面の改行から
- * p / brを自動生成する場合がある。
- *
- * 今回はHTML構造をこちらで管理しているため、
- * レイアウトを崩す不要な改行をフォーム内だけ除去する。
- */
-
 .multi-step-form br {
     display: none;
 }
 
 
-/*
- * CF7によって生成された
- * classを持たないpだけをリセットする。
- *
- * contact-step__number等、
- * 意図して作ったpには影響させない。
- */
 .multi-step-form p:not([class]) {
     margin: 0;
     padding: 0;
@@ -98,17 +92,20 @@
    CF7 Reset
 ================================================== */
 
-.contact-form .wpcf7-form {
+.contact-form
+.wpcf7-form {
     margin: 0;
 }
 
 
-.contact-form .wpcf7-list-item {
+.contact-form
+.wpcf7-list-item {
     margin: 0;
 }
 
 
-.contact-form .wpcf7-form-control-wrap {
+.contact-form
+.wpcf7-form-control-wrap {
     display: block;
 
     width: 100%;
@@ -132,7 +129,8 @@
 ================================================== */
 
 .contact-progress {
-    margin: 0 0 20px;
+    margin:
+        0 0 24px;
 }
 
 
@@ -168,7 +166,9 @@
 }
 
 
-/* Progress Bar */
+/* ==================================================
+   Progress Bar
+================================================== */
 
 .contact-progress__bar {
     position: relative;
@@ -178,7 +178,8 @@
 
     overflow: hidden;
 
-    background: #252525;
+    background:
+        #252525;
 }
 
 
@@ -195,13 +196,15 @@
 }
 
 
-/* Five Steps */
+/* ==================================================
+   Progress Steps
+================================================== */
 
 .contact-progress__steps {
     display: grid;
 
     grid-template-columns:
-        repeat(5, 1fr);
+        repeat(5, minmax(0, 1fr));
 
     gap: 8px;
 
@@ -212,14 +215,16 @@
 .contact-progress__steps span {
     height: 2px;
 
-    background: #252525;
+    background:
+        #252525;
 
     transition:
         background 0.3s ease;
 }
 
 
-.contact-progress__steps span.is-active {
+.contact-progress__steps
+span.is-active {
     background:
         var(--color-accent);
 }
@@ -236,30 +241,38 @@
     padding: 0;
 
     animation:
-        contact-step-fade
-        0.2s ease;
+        contact-step-in
+        0.28s
+        cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        );
 }
 
 
-.contact-progress + .contact-step {
+.contact-progress
++
+.contact-step {
     margin-top: 0;
 }
 
 
-@keyframes contact-step-fade {
+@keyframes contact-step-in {
 
     from {
         opacity: 0;
 
         transform:
-            translateY(4px);
+            translateX(8px);
     }
 
     to {
         opacity: 1;
 
         transform:
-            translateY(0);
+            translateX(0);
     }
 
 }
@@ -271,7 +284,7 @@
 
 .contact-step__heading {
     margin:
-        0 0 18px;
+        0 0 20px;
 
     padding: 0;
 }
@@ -279,7 +292,7 @@
 
 .contact-step__number {
     margin:
-        0 0 6px;
+        0 0 7px;
 
     color:
         var(--color-accent);
@@ -298,6 +311,7 @@
         var(--color-text);
 
     font-size: 23px;
+
     line-height: 1.4;
 }
 
@@ -310,6 +324,7 @@
         var(--color-muted);
 
     font-size: 12px;
+
     line-height: 1.6;
 }
 
@@ -323,7 +338,10 @@
     display: grid;
 
     grid-template-columns:
-        repeat(2, minmax(0, 1fr));
+        repeat(
+            2,
+            minmax(0, 1fr)
+        );
 
     gap: 10px;
 }
@@ -337,17 +355,25 @@
 .contact-choice {
     position: relative;
 
-    min-height: 100px;
+    min-height: 110px;
 
-    padding: 14px;
+    padding: 16px;
 
     display: flex;
+
     flex-direction: column;
+    justify-content: center;
+
+    overflow: hidden;
 
     border:
-        1px solid var(--color-border);
+        1px solid
+        var(--color-border);
 
-    background: #101010;
+    background:
+        #101010;
+
+    cursor: pointer;
 
     transition:
         border-color 0.2s ease,
@@ -357,15 +383,35 @@
 }
 
 
-.contact-choice:hover {
-    border-color: #5a5a5a;
+@media (hover: hover) {
 
-    transform:
-        translateY(-1px);
+    .contact-choice:hover {
+        border-color:
+            rgba(
+                255,
+                255,
+                255,
+                0.20
+            );
+
+        background:
+            #121212;
+
+        transform:
+            translateY(-2px);
+
+        box-shadow:
+            0 12px 26px
+            rgba(0, 0, 0, 0.18);
+    }
+
 }
 
 
-/* Selected */
+/* ==================================================
+   STEP1
+   Selected
+================================================== */
 
 .contact-choice:has(
     input[type="checkbox"]:checked
@@ -374,25 +420,254 @@
         var(--color-accent);
 
     background:
-        rgba(242, 56, 0, 0.08);
+        linear-gradient(
+            135deg,
+            rgba(242, 56, 0, 0.11),
+            rgba(242, 56, 0, 0.025)
+        ),
+        #101010;
 
     box-shadow:
         inset 0 0 0 1px
-        rgba(242, 56, 0, 0.18);
+        rgba(242, 56, 0, 0.16);
 }
 
 
-/* Icon */
+/* ==================================================
+   STEP1
+   Custom Check Indicator
+================================================== */
+
+.contact-choice::after {
+    content: "✓";
+
+    position: absolute;
+
+    top: 14px;
+    right: 14px;
+
+    width: 24px;
+    height: 24px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.14
+        );
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.025
+        );
+
+    color:
+        transparent;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.contact-choice:has(
+    input[type="checkbox"]:checked
+)::after {
+    border-color:
+        var(--color-accent);
+
+    background:
+        var(--color-accent);
+
+    color:
+        #ffffff;
+
+    transform:
+        scale(1.05);
+}
+
+
+/* ==================================================
+   STEP1
+   Icon Container
+================================================== */
 
 .contact-choice__icon {
-    margin-bottom: 8px;
+    position: relative;
 
-    font-size: 21px;
-    line-height: 1;
+    width: 42px;
+    height: 42px;
+
+    margin-bottom: 10px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border:
+        1px solid
+        rgba(242, 56, 0, 0.25);
+
+    background:
+        rgba(242, 56, 0, 0.055);
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
 }
 
 
-/* CF7 Wrapper */
+/*
+ * SVG本体。
+ *
+ * 各modifierクラスで
+ * --contact-iconへSVG Maskを設定する。
+ *
+ * background-colorにはCSS変数が使えるため、
+ * SVGファイル自体へ色をハードコードする必要がない。
+ */
+.contact-choice__icon::before {
+    content: "";
+
+    width: 24px;
+    height: 24px;
+
+    display: block;
+
+    background:
+        var(--color-accent);
+
+    -webkit-mask-image:
+        var(--contact-icon);
+
+    mask-image:
+        var(--contact-icon);
+
+    -webkit-mask-repeat:
+        no-repeat;
+
+    mask-repeat:
+        no-repeat;
+
+    -webkit-mask-position:
+        center;
+
+    mask-position:
+        center;
+
+    -webkit-mask-size:
+        contain;
+
+    mask-size:
+        contain;
+}
+
+
+/*
+ * 選択時はアイコン側も少し強調する。
+ */
+.contact-choice:has(
+    input[type="checkbox"]:checked
+)
+.contact-choice__icon {
+    border-color:
+        rgba(242, 56, 0, 0.65);
+
+    background:
+        rgba(242, 56, 0, 0.12);
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* ==================================================
+   STEP1 SVG Icons
+================================================== */
+
+/*
+ * Drum
+ * 無料体験
+ */
+.contact-choice__icon--trial {
+    --contact-icon:
+        url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cellipse%20cx%3D%2212%22%20cy%3D%228%22%20rx%3D%227%22%20ry%3D%223%22/%3E%3Cpath%20d%3D%22M5%208v7c0%201.7%203.1%203%207%203s7-1.3%207-3V8%22/%3E%3Cpath%20d%3D%22M8%2010v6M16%2010v6M7%203l4%203M17%203l-4%203%22/%3E%3C/svg%3E");
+}
+
+
+/*
+ * Target
+ * 初心者
+ */
+.contact-choice__icon--beginner {
+    --contact-icon:
+        url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%228%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%224%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%221%22/%3E%3Cpath%20d%3D%22M16%208l5-5M17%203h4v4%22/%3E%3C/svg%3E");
+}
+
+
+/*
+ * Trending Up
+ * 上達・強化
+ */
+.contact-choice__icon--improve {
+    --contact-icon:
+        url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M3%2017l6-6%204%204%208-9%22/%3E%3Cpath%20d%3D%22M15%206h6v6%22/%3E%3C/svg%3E");
+}
+
+
+/*
+ * Guitar
+ * バンド演奏
+ */
+.contact-choice__icon--band {
+    --contact-icon:
+        url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M14%206l4-4%204%204-4%204%22/%3E%3Cpath%20d%3D%22M16%208l-5%205%22/%3E%3Cpath%20d%3D%22M12%2012c-2-2-5-2-7%200s-2%205%200%207%205%202%207%200%202-5%200-7z%22/%3E%3Ccircle%20cx%3D%228.5%22%20cy%3D%2215.5%22%20r%3D%221.5%22/%3E%3C/svg%3E");
+}
+
+
+/*
+ * Music
+ * 社会人・趣味
+ */
+.contact-choice__icon--hobby {
+    --contact-icon:
+        url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M9%2018V5l12-2v13%22/%3E%3Ccircle%20cx%3D%226%22%20cy%3D%2218%22%20r%3D%223%22/%3E%3Ccircle%20cx%3D%2218%22%20cy%3D%2216%22%20r%3D%223%22/%3E%3C/svg%3E");
+}
+
+
+/*
+ * Baby
+ * お子様レッスン
+ */
+.contact-choice__icon--kids {
+    --contact-icon:
+        url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2210%22%20r%3D%226%22/%3E%3Cpath%20d%3D%22M9%209h.01M15%209h.01M10%2013c1%201%203%201%204%200%22/%3E%3Cpath%20d%3D%22M9%204c0-2%202-3%203-1%22/%3E%3Cpath%20d%3D%22M7%2016l-2%204M17%2016l2%204M9%2016v5M15%2016v5%22/%3E%3C/svg%3E");
+}
+
+
+/* ==================================================
+   STEP1 CF7 Wrapper
+================================================== */
 
 .contact-choice
 .wpcf7-form-control-wrap {
@@ -400,64 +675,158 @@
 }
 
 
-/* Checkbox Label */
+/* ==================================================
+   STEP1 Label
+================================================== */
+
+/*
+ * CF7のwrapperはレイアウト上の基準にせず、
+ * .contact-choice をクリック領域の基準にする。
+ */
+.contact-choice
+.wpcf7-form-control-wrap,
+.contact-choice
+.wpcf7-form-control,
+.contact-choice
+.wpcf7-list-item {
+    position: static;
+}
+
 
 .contact-choice
 .wpcf7-list-item label {
+    position: static;
+
     display: flex;
 
     align-items: center;
 
-    gap: 8px;
+    cursor: pointer;
+}
+
+
+/*
+ * labelの透明レイヤーをカード全体へ広げる。
+ *
+ * これにより、
+ * アイコン・タイトル・説明文・余白を含め、
+ * カード内のどこをクリックしても
+ * checkboxを切り替えられる。
+ */
+.contact-choice
+.wpcf7-list-item
+label::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 10;
+
+    display: block;
+
+    background: transparent;
 
     cursor: pointer;
 }
 
 
-/* Checkbox */
+/*
+ * 装飾要素がクリックを奪わないようにする。
+ * 実際のクリック判定は上のlabel::beforeへ渡す。
+ */
+.contact-choice__icon,
+.contact-choice small,
+.contact-choice::after,
+.contact-choice
+.wpcf7-list-item-label {
+    pointer-events: none;
+}
 
+
+/* ==================================================
+   STEP1 Checkbox
+================================================== */
+
+/*
+ * inputはCF7送信・keyboard操作のため
+ * DOMに残す。
+ *
+ * 視覚的にのみ隠す。
+ */
 .contact-choice
 input[type="checkbox"] {
-    width: 15px;
-    height: 15px;
+    position: absolute;
 
-    flex-shrink: 0;
+    width: 1px;
+    height: 1px;
 
-    accent-color:
-        var(--color-accent);
+    padding: 0;
+    margin: -1px;
 
-    cursor: pointer;
+    overflow: hidden;
+
+    clip:
+        rect(
+            0,
+            0,
+            0,
+            0
+        );
+
+    clip-path:
+        inset(50%);
+
+    white-space: nowrap;
+
+    border: 0;
 }
 
 
-/* Checkbox Text */
+/* ==================================================
+   STEP1 Text
+================================================== */
 
 .contact-choice
 .wpcf7-list-item-label {
+    position: relative;
+
+    z-index: 1;
+
+    padding-right: 32px;
+
     color:
         var(--color-text);
 
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 700;
 
     line-height: 1.5;
 }
 
 
-/* Description */
-
 .contact-choice small {
-    margin-top: 4px;
+    position: relative;
+
+    z-index: 1;
+
+    margin-top: 6px;
+
+    padding-right: 32px;
 
     color:
         var(--color-muted);
 
     font-size: 10px;
+
     line-height: 1.5;
 }
 
 
-/* Keyboard Focus */
+/* ==================================================
+   STEP1 Keyboard Focus
+================================================== */
 
 .contact-choice:has(
     input:focus-visible
@@ -466,7 +835,8 @@ input[type="checkbox"] {
         2px solid
         var(--color-label);
 
-    outline-offset: 2px;
+    outline-offset:
+        2px;
 }
 
 
@@ -482,9 +852,10 @@ input[type="checkbox"] {
 .contact-field__label {
     display: block;
 
-    margin-bottom: 6px;
+    margin-bottom: 7px;
 
-    color: #d0d0d0;
+    color:
+        #d0d0d0;
 
     font-size: 12px;
     font-weight: 700;
@@ -493,7 +864,9 @@ input[type="checkbox"] {
 }
 
 
-/* 必須・任意 */
+/* ==================================================
+   Required / Optional
+================================================== */
 
 .contact-field__label span {
     margin-left: 5px;
@@ -506,8 +879,6 @@ input[type="checkbox"] {
 }
 
 
-/* 必須 */
-
 .contact-field__label
 .required {
     color:
@@ -515,21 +886,25 @@ input[type="checkbox"] {
 }
 
 
-/* Help Text */
+/* ==================================================
+   Help Text
+================================================== */
 
 .contact-field__help {
     margin:
         5px 0 0;
 
-    color: #777777;
+    color:
+        #777777;
 
     font-size: 10px;
+
     line-height: 1.5;
 }
 
 
 /* ==================================================
-   Text / Email / Tel
+   Input
 ================================================== */
 
 .contact-input {
@@ -540,13 +915,15 @@ input[type="checkbox"] {
         0 14px;
 
     border:
-        1px solid var(--color-border);
+        1px solid
+        var(--color-border);
 
     border-radius: 0;
 
     outline: none;
 
-    background: #151515;
+    background:
+        #151515;
 
     color:
         var(--color-text);
@@ -562,7 +939,8 @@ input[type="checkbox"] {
 
 
 .contact-input::placeholder {
-    color: #666666;
+    color:
+        #666666;
 }
 
 
@@ -570,7 +948,8 @@ input[type="checkbox"] {
     border-color:
         var(--color-accent);
 
-    background: #181818;
+    background:
+        #181818;
 
     box-shadow:
         0 0 0 2px
@@ -584,7 +963,10 @@ input[type="checkbox"] {
 
 .contact-field__textarea {
     width: 100%;
-    min-height: 88px;
+
+    height: 96px;
+    min-height: 96px;
+    max-height: 180px;
 
     padding:
         12px 14px;
@@ -592,13 +974,15 @@ input[type="checkbox"] {
     resize: vertical;
 
     border:
-        1px solid var(--color-border);
+        1px solid
+        var(--color-border);
 
     border-radius: 0;
 
     outline: none;
 
-    background: #151515;
+    background:
+        #151515;
 
     color:
         var(--color-text);
@@ -616,7 +1000,8 @@ input[type="checkbox"] {
 
 
 .contact-field__textarea::placeholder {
-    color: #666666;
+    color:
+        #666666;
 }
 
 
@@ -624,7 +1009,8 @@ input[type="checkbox"] {
     border-color:
         var(--color-accent);
 
-    background: #181818;
+    background:
+        #181818;
 
     box-shadow:
         0 0 0 2px
@@ -641,16 +1027,19 @@ input[type="checkbox"] {
     height: 46px;
 
     padding:
-        0 40px 0 14px;
+        0 40px
+        0 14px;
 
     border:
-        1px solid var(--color-border);
+        1px solid
+        var(--color-border);
 
     border-radius: 0;
 
     outline: none;
 
-    background-color: #151515;
+    background-color:
+        #151515;
 
     color:
         var(--color-text);
@@ -671,7 +1060,8 @@ input[type="checkbox"] {
     border-color:
         var(--color-accent);
 
-    background-color: #181818;
+    background-color:
+        #181818;
 
     box-shadow:
         0 0 0 2px
@@ -687,16 +1077,31 @@ input[type="checkbox"] {
     display: grid;
 
     grid-template-columns:
-        repeat(2, minmax(0, 1fr));
+        repeat(
+            2,
+            minmax(0, 1fr)
+        );
 
     gap: 8px;
 }
 
 
 /*
- * CF7のradio wrapperを
- * CSS Gridの中で直接扱えるようにする。
+ * Contact Form 7はradioを
+ *
+ * .wpcf7-form-control-wrap
+ *   └ .wpcf7-form-control
+ *       └ .wpcf7-list-item
+ *
+ * のようにラップして出力する。
+ *
+ * wrapperをGridの1要素として扱うと、
+ * 選択肢全体が左1列へ寄ってしまうため、
+ * 中間wrapperをdisplay: contentsにして
+ * 各list-itemを直接Gridへ参加させる。
  */
+.contact-radio-group
+.wpcf7-form-control-wrap,
 .contact-radio-group
 .wpcf7-form-control {
     display: contents;
@@ -706,28 +1111,59 @@ input[type="checkbox"] {
 .contact-radio-group
 .wpcf7-list-item {
     display: block;
+
+    min-width: 0;
 }
 
 
-/* Radio Card */
+/*
+ * PC / Tabletでは2列表示。
+ *
+ * 選択肢が奇数個の場合、
+ * 最後の1件だけ横幅いっぱいに広げる。
+ *
+ * STEP2 : 5件
+ * STEP3 : 5件
+ * STEP4 : 3件
+ *
+ * STEP5の連絡方法は2件なので
+ * 通常の2列表示になる。
+ */
+@media (min-width: 601px) {
+
+    .contact-radio-group
+    .wpcf7-list-item:last-child:nth-child(odd) {
+        grid-column:
+            1 / -1;
+    }
+
+}
+
+
+/* ==================================================
+   Radio Card
+================================================== */
 
 .contact-radio-group
 .wpcf7-list-item label {
-    min-height: 46px;
+    position: relative;
+
+    min-height: 52px;
 
     padding:
-        10px 12px;
+        12px 46px
+        12px 14px;
 
     display: flex;
 
     align-items: center;
 
-    gap: 9px;
-
     border:
-        1px solid var(--color-border);
+        1px solid
+        var(--color-border);
 
-    background: #101010;
+    background:
+        #101010;
 
     cursor: pointer;
 
@@ -739,34 +1175,123 @@ input[type="checkbox"] {
 }
 
 
-.contact-radio-group
-.wpcf7-list-item label:hover {
-    border-color: #5a5a5a;
+@media (hover: hover) {
 
-    transform:
-        translateY(-1px);
+    .contact-radio-group
+    .wpcf7-list-item
+    label:hover {
+        border-color:
+            rgba(
+                255,
+                255,
+                255,
+                0.20
+            );
+
+        background:
+            #121212;
+
+        transform:
+            translateY(-1px);
+    }
+
 }
 
 
-/* Radio */
+/* ==================================================
+   Radio Input
+================================================== */
 
 .contact-radio-group
 input[type="radio"] {
-    width: 15px;
-    height: 15px;
+    position: absolute;
 
-    margin: 0;
+    width: 1px;
+    height: 1px;
 
-    flex-shrink: 0;
+    padding: 0;
+    margin: -1px;
 
-    accent-color:
-        var(--color-accent);
+    overflow: hidden;
 
-    cursor: pointer;
+    clip:
+        rect(
+            0,
+            0,
+            0,
+            0
+        );
+
+    clip-path:
+        inset(50%);
+
+    white-space: nowrap;
+
+    border: 0;
 }
 
 
-/* Selected */
+/* ==================================================
+   Radio Indicator
+================================================== */
+
+.contact-radio-group
+.wpcf7-list-item
+label::after {
+    content: "✓";
+
+    position: absolute;
+
+    top: 50%;
+    right: 14px;
+
+    width: 22px;
+    height: 22px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.14
+        );
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.025
+        );
+
+    color:
+        transparent;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    transform:
+        translateY(-50%);
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+/* ==================================================
+   Radio Selected
+================================================== */
 
 .contact-radio-group
 .wpcf7-list-item:has(
@@ -777,15 +1302,38 @@ label {
         var(--color-accent);
 
     background:
-        rgba(242, 56, 0, 0.08);
+        linear-gradient(
+            135deg,
+            rgba(242, 56, 0, 0.10),
+            rgba(242, 56, 0, 0.025)
+        ),
+        #101010;
 
     box-shadow:
         inset 0 0 0 1px
-        rgba(242, 56, 0, 0.18);
+        rgba(242, 56, 0, 0.16);
 }
 
 
-/* Radio Text */
+.contact-radio-group
+.wpcf7-list-item:has(
+    input[type="radio"]:checked
+)
+label::after {
+    border-color:
+        var(--color-accent);
+
+    background:
+        var(--color-accent);
+
+    color:
+        #ffffff;
+}
+
+
+/* ==================================================
+   Radio Text
+================================================== */
 
 .contact-radio-group
 .wpcf7-list-item-label {
@@ -794,10 +1342,14 @@ label {
 
     font-size: 12px;
     font-weight: 600;
+
+    line-height: 1.5;
 }
 
 
-/* Keyboard Focus */
+/* ==================================================
+   Radio Keyboard Focus
+================================================== */
 
 .contact-radio-group
 .wpcf7-list-item:has(
@@ -808,7 +1360,8 @@ label {
         2px solid
         var(--color-label);
 
-    outline-offset: 2px;
+    outline-offset:
+        2px;
 }
 
 
@@ -816,6 +1369,10 @@ label {
    Privacy Acceptance
 ================================================== */
 
+/*
+ * 個人情報同意だけは
+ * checkboxを視覚的に残す。
+ */
 .contact-field
 .wpcf7-acceptance
 .wpcf7-list-item label {
@@ -823,7 +1380,7 @@ label {
 
     align-items: flex-start;
 
-    gap: 9px;
+    gap: 10px;
 
     cursor: pointer;
 }
@@ -832,8 +1389,8 @@ label {
 .contact-field
 .wpcf7-acceptance
 input[type="checkbox"] {
-    width: 16px;
-    height: 16px;
+    width: 17px;
+    height: 17px;
 
     margin-top: 2px;
 
@@ -849,9 +1406,11 @@ input[type="checkbox"] {
 .contact-field
 .wpcf7-acceptance
 .wpcf7-list-item-label {
-    color: #c8c8c8;
+    color:
+        #c8c8c8;
 
     font-size: 12px;
+
     line-height: 1.6;
 }
 
@@ -925,7 +1484,9 @@ input[type="checkbox"] {
 ================================================== */
 
 .contact-step__actions {
-    margin-top: 20px;
+    margin-top: 24px;
+
+    padding-top: 18px;
 
     display: flex;
 
@@ -933,10 +1494,19 @@ input[type="checkbox"] {
     justify-content: flex-end;
 
     gap: 10px;
+
+    border-top:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.06
+        );
 }
 
 
-/* 戻る */
+/* Back */
 
 .contact-step__actions
 .button--secondary {
@@ -946,7 +1516,7 @@ input[type="checkbox"] {
 }
 
 
-/* 次へ */
+/* Next */
 
 .contact-step__actions
 .button--primary {
@@ -975,7 +1545,8 @@ input[type="checkbox"] {
 input[type="submit"]:disabled {
     opacity: 0.55;
 
-    cursor: not-allowed;
+    cursor:
+        not-allowed;
 
     transform: none;
 }
@@ -990,7 +1561,8 @@ input[type="submit"]:disabled {
     margin:
         0 0 0 8px;
 
-    vertical-align: middle;
+    vertical-align:
+        middle;
 }
 
 
@@ -1007,14 +1579,17 @@ input[type="submit"]:disabled {
         11px 13px;
 
     border:
-        1px solid var(--color-border);
+        1px solid
+        var(--color-border);
 
     color:
         var(--color-text);
 
-    background: #111111;
+    background:
+        #111111;
 
     font-size: 12px;
+
     line-height: 1.6;
 }
 
@@ -1031,7 +1606,12 @@ form.sent
         #3e9f6c;
 
     background:
-        rgba(62, 159, 108, 0.08);
+        rgba(
+            62,
+            159,
+            108,
+            0.08
+        );
 }
 
 
@@ -1050,7 +1630,12 @@ form.failed
         #ff6245;
 
     background:
-        rgba(255, 98, 69, 0.06);
+        rgba(
+            255,
+            98,
+            69,
+            0.06
+        );
 }
 
 
@@ -1061,7 +1646,11 @@ form.failed
 @media (max-width: 900px) {
 
     .contact-form {
-        width: min(100%, 680px);
+        width:
+            min(
+                100%,
+                680px
+            );
 
         padding:
             26px 28px;
@@ -1076,6 +1665,8 @@ form.failed
 
 @media (max-width: 600px) {
 
+    /* Container */
+
     .contact-form {
         width: 100%;
 
@@ -1087,34 +1678,40 @@ form.failed
     /* Progress */
 
     .contact-progress {
-        margin-bottom: 18px;
+        margin-bottom:
+            18px;
     }
 
 
     .contact-progress__meta {
-        gap: 12px;
+        gap:
+            12px;
     }
 
 
     .contact-progress__step {
-        font-size: 10px;
+        font-size:
+            10px;
     }
 
 
     .contact-progress__name {
-        font-size: 11px;
+        font-size:
+            11px;
     }
 
 
     /* Heading */
 
     .contact-step__heading {
-        margin-bottom: 16px;
+        margin-bottom:
+            16px;
     }
 
 
     .contact-step__title {
-        font-size: 20px;
+        font-size:
+            20px;
     }
 
 
@@ -1129,9 +1726,42 @@ form.failed
 
 
     .contact-choice {
-        min-height: auto;
+        min-height:
+            96px;
 
-        padding: 12px;
+        padding:
+            14px;
+    }
+
+
+    .contact-choice::after {
+        top: 12px;
+        right: 12px;
+
+        width: 22px;
+        height: 22px;
+    }
+
+
+    .contact-choice__icon {
+        width: 38px;
+        height: 38px;
+
+        margin-bottom:
+            8px;
+    }
+
+
+    .contact-choice__icon::before {
+        width: 22px;
+        height: 22px;
+    }
+
+
+    .contact-choice
+    .wpcf7-list-item-label {
+        font-size:
+            13px;
     }
 
 
@@ -1147,35 +1777,47 @@ form.failed
 
     .contact-radio-group
     .wpcf7-list-item label {
-        min-height: 44px;
+        min-height:
+            48px;
 
         padding:
-            9px 11px;
+            10px 44px
+            10px 12px;
     }
 
 
     /* Fields */
 
     .contact-field {
-        margin-top: 14px;
+        margin-top:
+            14px;
     }
 
 
     .contact-input,
     .contact-select {
-        height: 44px;
+        height:
+            44px;
     }
 
 
     .contact-field__textarea {
-        min-height: 82px;
+        height:
+            88px;
+
+        min-height:
+            88px;
     }
 
 
     /* Actions */
 
     .contact-step__actions {
-        margin-top: 18px;
+        margin-top:
+            20px;
+
+        padding-top:
+            16px;
 
         flex-direction:
             column-reverse;
@@ -1183,7 +1825,8 @@ form.failed
         align-items:
             stretch;
 
-        gap: 8px;
+        gap:
+            8px;
     }
 
 
@@ -1201,7 +1844,45 @@ form.failed
     .contact-turnstile,
     .contact-form
     .cf-turnstile {
-        overflow-x: auto;
+        overflow-x:
+            auto;
+    }
+
+}
+
+
+/* ==================================================
+   Reduced Motion
+================================================== */
+
+@media (
+    prefers-reduced-motion:
+    reduce
+) {
+
+    .contact-step {
+        animation: none;
+    }
+
+
+    .contact-choice,
+    .contact-choice::after,
+    .contact-choice__icon,
+    .contact-radio-group
+    .wpcf7-list-item label,
+    .contact-radio-group
+    .wpcf7-list-item label::after,
+    .contact-progress__current,
+    .contact-progress__steps span {
+        transition: none;
+    }
+
+
+    .contact-choice:hover,
+    .contact-radio-group
+    .wpcf7-list-item
+    label:hover {
+        transform: none;
     }
 
 }

@@ -5,7 +5,13 @@
 
     <div class="section__inner">
 
-        <div class="section-heading">
+        <!-- =========================
+             Section Heading
+        ========================== -->
+        <div
+            class="section-heading"
+            data-reveal="up"
+        >
 
             <p class="section-heading__label">
                 STUDENT VOICE
@@ -23,14 +29,26 @@
         </div>
 
 
+        <!-- =========================
+             Student Voice Cards
+        ========================== -->
         <div class="voice__grid">
+
 
             <!-- =========================
                  Student 01 / Corgi
             ========================== -->
-            <article class="voice-card">
+            <article
+                class="voice-card"
+                data-reveal="up"
+                data-reveal-delay="0"
+                data-motion="card"
+            >
 
-                <div class="voice-card__visual">
+                <div
+                    class="voice-card__visual"
+                    data-motion="image"
+                >
 
                     <img
                         src="<?php echo esc_url(
@@ -43,15 +61,21 @@
 
                 </div>
 
-                <div class="voice-card__stars">
+
+                <div
+                    class="voice-card__stars"
+                    aria-label="5段階評価で5"
+                >
                     ★★★★★
                 </div>
+
 
                 <p class="voice-card__text">
                     「仕事のストレス発散に始めました。
                     思いきりドラムを叩くと本当にスッキリします。
                     先生も丁寧で、初心者でも安心して続けられています。」
                 </p>
+
 
                 <div class="voice-card__profile">
 
@@ -71,9 +95,17 @@
             <!-- =========================
                  Student 02 / Cat
             ========================== -->
-            <article class="voice-card">
+            <article
+                class="voice-card"
+                data-reveal="up"
+                data-reveal-delay="120"
+                data-motion="card"
+            >
 
-                <div class="voice-card__visual">
+                <div
+                    class="voice-card__visual"
+                    data-motion="image"
+                >
 
                     <img
                         src="<?php echo esc_url(
@@ -86,9 +118,14 @@
 
                 </div>
 
-                <div class="voice-card__stars">
+
+                <div
+                    class="voice-card__stars"
+                    aria-label="5段階評価で5"
+                >
                     ★★★★★
                 </div>
+
 
                 <p class="voice-card__text">
                     「全くの未経験でしたが、
@@ -96,6 +133,7 @@
                     3ヶ月後には好きな曲を叩けるようになって、
                     毎週のレッスンが楽しみです。」
                 </p>
+
 
                 <div class="voice-card__profile">
 
@@ -115,9 +153,17 @@
             <!-- =========================
                  Student 03 / Bear
             ========================== -->
-            <article class="voice-card">
+            <article
+                class="voice-card"
+                data-reveal="up"
+                data-reveal-delay="240"
+                data-motion="card"
+            >
 
-                <div class="voice-card__visual">
+                <div
+                    class="voice-card__visual"
+                    data-motion="image"
+                >
 
                     <img
                         src="<?php echo esc_url(
@@ -130,9 +176,14 @@
 
                 </div>
 
-                <div class="voice-card__stars">
+
+                <div
+                    class="voice-card__stars"
+                    aria-label="5段階評価で5"
+                >
                     ★★★★★
                 </div>
+
 
                 <p class="voice-card__text">
                     「昔からドラムに憧れていて、
@@ -140,6 +191,7 @@
                     自分のペースで教えてもらえるので、
                     大人からでも無理なく続けられています。」
                 </p>
+
 
                 <div class="voice-card__profile">
 
@@ -163,7 +215,13 @@
         ========================== -->
         <div class="voice-stats">
 
-            <div class="voice-stat">
+
+            <!-- Students -->
+            <div
+                class="voice-stat"
+                data-reveal="up"
+                data-reveal-delay="100"
+            >
 
                 <strong>
                     500+
@@ -176,7 +234,12 @@
             </div>
 
 
-            <div class="voice-stat">
+            <!-- Goal Achievement -->
+            <div
+                class="voice-stat"
+                data-reveal="up"
+                data-reveal-delay="180"
+            >
 
                 <strong>
                     90%
@@ -189,7 +252,12 @@
             </div>
 
 
-            <div class="voice-stat">
+            <!-- Satisfaction -->
+            <div
+                class="voice-stat"
+                data-reveal="up"
+                data-reveal-delay="260"
+            >
 
                 <strong>
                     4.9
@@ -202,7 +270,12 @@
             </div>
 
 
-            <div class="voice-stat">
+            <!-- History -->
+            <div
+                class="voice-stat"
+                data-reveal="up"
+                data-reveal-delay="340"
+            >
 
                 <strong>
                     8年
