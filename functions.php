@@ -1,44 +1,60 @@
 <?php
 
 /**
- * LP専用のCSS / JavaScriptを読み込む。
+ * LPで使用するCSS / JavaScriptを読み込む。
  *
- * wp_enqueue_scripts に登録することで、
- * header.php / footer.php にscriptタグやlinkタグを直接書かず、
- * WordPress標準の方法で管理する。
+ * CSSは責務ごとに分割し、
+ * WordPress標準のenqueue機能で読み込む。
  */
-
 function drum_school_lp_enqueue_assets() {
 
-    // LP全体のスタイル
-    wp_enqueue_style(
-        'drum-school-lp-style',
-        get_template_directory_uri() . '/assets/css/lp.css',
-        array(),
-        '1.0.0'
+    $theme_uri = get_template_directory_uri();
+
+    $styles = array(
+        'base',
+        'layout',
+        'components',
+        'header',
+        'hero',
+        'trial-bar',
+        'features',
     );
 
-    // LP全体のJavaScript
-    // 最後の true により </body> 直前で読み込まれる
+    foreach ($styles as $style) {
+
+        wp_enqueue_style(
+            'drum-school-' . $style,
+            $theme_uri . '/assets/css/' . $style . '.css',
+            array(),
+            '1.0.0'
+        );
+    }
+
     wp_enqueue_script(
-        'drum-school-lp-script',
-        get_template_directory_uri() . '/assets/js/lp.js',
+        'drum-school-lp',
+        $theme_uri . '/assets/js/lp.js',
         array(),
         '1.0.0',
         true
     );
 }
 
-add_action('wp_enqueue_scripts', 'drum_school_lp_enqueue_assets');
+add_action(
+    'wp_enqueue_scripts',
+    'drum_school_lp_enqueue_assets'
+);
+
 
 /**
- * WordPressテーマの初期設定。
+ * WordPressテーマ初期設定。
  */
-
 function drum_school_lp_setup() {
-    
-    // <title>タグをWordPress側で自動管理する
+
+    // ページタイトルをWordPress側で管理する。
     add_theme_support('title-tag');
 }
 
-add_action('after_setup_theme', 'drum_school_lp_setup');
+add_action(
+    'after_setup_theme',
+    'drum_school_lp_setup'
+);

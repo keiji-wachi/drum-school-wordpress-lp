@@ -1,0 +1,150 @@
+/**
+ * Features
+ *
+ * BEATLABが選ばれる理由を
+ * 6カードで表示するセクション。
+ */
+
+
+/* =========================
+   Features
+========================= */
+
+.features {
+    position: relative;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(255, 255, 255, 0.025),
+            transparent 40%
+        ),
+        var(--color-bg);
+}
+
+
+/* =========================
+   Grid
+========================= */
+
+.features__grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    border-top:
+        1px solid
+        var(--color-border);
+
+    border-left:
+        1px solid
+        var(--color-border);
+}
+
+
+/* =========================
+   Card
+========================= */
+
+.feature-card {
+    min-height: 250px;
+
+    padding: 42px 36px;
+
+    border-right:
+        1px solid
+        var(--color-border);
+
+    border-bottom:
+        1px solid
+        var(--color-border);
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.01
+        );
+
+    transition:
+        background 0.25s ease,
+        transform 0.25s ease;
+}
+
+.feature-card:hover {
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.035
+        );
+}
+
+
+/* =========================
+   Card Content
+========================= */
+
+.feature-card__icon {
+    margin-bottom: 24px;
+
+    font-size: 34px;
+
+    line-height: 1;
+}
+
+.feature-card__title {
+    margin: 0;
+
+    font-size: 20px;
+
+    line-height: 1.4;
+}
+
+.feature-card__text {
+    margin: 16px 0 0;
+
+    color: var(--color-muted);
+
+    font-size: 14px;
+
+    line-height: 1.9;
+}
+
+
+/* =========================
+   Tablet
+========================= */
+
+@media (max-width: 900px) {
+
+    .features__grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+}
+
+
+/* =========================
+   Smartphone
+========================= */
+
+@media (max-width: 600px) {
+
+    .features__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .feature-card {
+        min-height: auto;
+
+        padding: 32px 24px;
+    }
+
+    .feature-card__title {
+        font-size: 18px;
+    }
+}
