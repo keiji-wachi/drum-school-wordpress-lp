@@ -1,0 +1,293 @@
+/**
+ * Pricing
+ *
+ * レッスンプラン・料金を表示するセクション。
+ */
+
+
+/* =========================
+   Pricing
+========================= */
+
+.pricing {
+    position: relative;
+
+    background:
+        radial-gradient(
+            circle at 50% 10%,
+            rgba(242, 56, 0, 0.05),
+            transparent 35%
+        ),
+        var(--color-bg);
+}
+
+
+/* =========================
+   Grid
+========================= */
+
+.pricing__grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 24px;
+
+    align-items: stretch;
+}
+
+
+/* =========================
+   Price Card
+========================= */
+
+.price-card {
+    position: relative;
+
+    padding: 40px 34px;
+
+    display: flex;
+    flex-direction: column;
+
+    border:
+        1px solid var(--color-border);
+
+    background: #0d0d0d;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease;
+}
+
+.price-card:hover {
+    transform: translateY(-6px);
+
+    border-color: #555555;
+
+    background: #101010;
+}
+
+
+/* =========================
+   Featured Plan
+========================= */
+
+.price-card--featured {
+    border-color:
+        rgba(242, 56, 0, 0.9);
+
+    box-shadow:
+        0 0 40px
+        rgba(242, 56, 0, 0.08);
+}
+
+.price-card--featured:hover {
+    border-color: var(--color-accent);
+}
+
+.price-card__recommend {
+    position: absolute;
+
+    top: 0;
+    left: 50%;
+
+    margin: 0;
+
+    padding: 7px 18px;
+
+    transform:
+        translate(-50%, -50%);
+
+    background: var(--color-accent);
+
+    color: #ffffff;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 0.12em;
+
+    white-space: nowrap;
+}
+
+
+/* =========================
+   Card Header
+========================= */
+
+.price-card__label {
+    margin: 0 0 12px;
+
+    color: var(--color-label);
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 0.12em;
+}
+
+.price-card__title {
+    margin: 0;
+
+    font-size: 24px;
+
+    line-height: 1.4;
+}
+
+.price-card__description {
+    min-height: 48px;
+
+    margin: 14px 0 0;
+
+    color: var(--color-muted);
+
+    font-size: 13px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================
+   Price
+========================= */
+
+.price-card__price {
+    margin-top: 28px;
+
+    display: flex;
+    align-items: flex-start;
+
+    line-height: 1;
+}
+
+.price-card__currency {
+    margin-top: 10px;
+    margin-right: 4px;
+
+    color: var(--color-muted);
+
+    font-size: 18px;
+}
+
+.price-card__price strong {
+    font-size: clamp(
+        46px,
+        5vw,
+        64px
+    );
+
+    font-weight: 900;
+
+    letter-spacing: -0.04em;
+}
+
+.price-card__unit {
+    margin: 8px 0 0;
+
+    color: var(--color-muted);
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   Features
+========================= */
+
+.price-card__features {
+    margin: 32px 0;
+
+    padding: 28px 0 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 14px;
+
+    border-top:
+        1px solid var(--color-border);
+
+    list-style: none;
+
+    color: #d5d5d5;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================
+   Button
+========================= */
+
+.price-card__button {
+    width: 100%;
+
+    margin-top: auto;
+}
+
+
+/* =========================
+   Note
+========================= */
+
+.pricing__note {
+    margin: 28px 0 0;
+
+    color: var(--color-muted);
+
+    font-size: 11px;
+
+    text-align: center;
+}
+
+
+/* =========================
+   Tablet
+========================= */
+
+@media (max-width: 900px) {
+
+    .pricing__grid {
+        grid-template-columns: 1fr;
+
+        max-width: 620px;
+
+        margin: 0 auto;
+    }
+
+    .price-card__description {
+        min-height: auto;
+    }
+
+    .price-card--featured {
+        order: -1;
+    }
+}
+
+
+/* =========================
+   Smartphone
+========================= */
+
+@media (max-width: 600px) {
+
+    .pricing__grid {
+        gap: 20px;
+    }
+
+    .price-card {
+        padding: 34px 24px;
+    }
+
+    .price-card__title {
+        font-size: 21px;
+    }
+
+    .price-card__price strong {
+        font-size: 48px;
+    }
+}

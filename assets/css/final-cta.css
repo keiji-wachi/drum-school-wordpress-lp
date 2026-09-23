@@ -1,0 +1,197 @@
+/**
+ * Final CTA
+ *
+ * フォーム直前に配置する最終CTA。
+ * ユーザーの申込意欲を高め、
+ * Contact Formへ誘導する。
+ */
+
+
+/* =========================
+   Final CTA
+========================= */
+
+.final-cta {
+    position: relative;
+
+    min-height: 420px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(10, 10, 10, 0.92),
+            rgba(10, 10, 10, 0.58),
+            rgba(10, 10, 10, 0.92)
+        ),
+        url("../images/hero-drum.jpg")
+        center 62% / cover no-repeat;
+}
+
+
+/* =========================
+   Overlay
+========================= */
+
+.final-cta__overlay {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(242, 56, 0, 0.12),
+            transparent 58%
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   Inner
+========================= */
+
+.final-cta__inner {
+    position: relative;
+
+    z-index: 1;
+
+    width: min(
+        calc(100% - 48px),
+        900px
+    );
+
+    margin: 0 auto;
+
+    padding: 96px 0;
+
+    text-align: center;
+}
+
+
+/* =========================
+   Label
+========================= */
+
+.final-cta__label {
+    width: fit-content;
+
+    margin: 0 auto 18px;
+
+    padding: 5px 10px;
+
+    border:
+        1px solid rgba(255, 212, 0, 0.45);
+
+    color: var(--color-label);
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 0.12em;
+}
+
+
+/* =========================
+   Title
+========================= */
+
+.final-cta__title {
+    margin: 0;
+
+    color: var(--color-text);
+
+    font-size: clamp(
+        38px,
+        5vw,
+        64px
+    );
+
+    line-height: 1.25;
+
+    font-weight: 900;
+
+    text-shadow:
+        0 4px 24px
+        rgba(0, 0, 0, 0.55);
+}
+
+.final-cta__title span {
+    color: var(--color-accent);
+}
+
+
+/* =========================
+   Text
+========================= */
+
+.final-cta__text {
+    margin: 22px auto 0;
+
+    max-width: 640px;
+
+    color: #c4c4c4;
+
+    font-size: 14px;
+
+    line-height: 1.9;
+
+    text-shadow:
+        0 2px 12px
+        rgba(0, 0, 0, 0.65);
+}
+
+
+/* =========================
+   Button
+========================= */
+
+.final-cta__button {
+    margin-top: 34px;
+
+    min-width: 280px;
+}
+
+
+/* =========================
+   Smartphone
+========================= */
+
+@media (max-width: 600px) {
+
+    .final-cta {
+        min-height: 380px;
+
+        background-position:
+            65% center;
+    }
+
+    .final-cta__inner {
+        width: min(
+            calc(100% - 32px),
+            900px
+        );
+
+        padding: 76px 0;
+    }
+
+    .final-cta__title {
+        font-size: 40px;
+    }
+
+    .final-cta__text {
+        font-size: 13px;
+    }
+
+    .final-cta__button {
+        width: 100%;
+        min-width: 0;
+    }
+}

@@ -1,0 +1,202 @@
+/**
+ * Site Header
+ *
+ * LP上部の固定ナビゲーション。
+ */
+
+
+/* =========================
+   Header
+========================= */
+
+.site-header {
+    position: sticky;
+    top: 0;
+
+    width: 100%;
+    height: var(--header-height);
+
+    z-index: 100;
+
+    background: rgba(8, 8, 8, 0.92);
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.1);
+
+    backdrop-filter: blur(10px);
+}
+
+
+/*
+ * WordPressへ管理者ログインしている場合、
+ * 上部に管理バーが表示されるため位置を調整する。
+ */
+.admin-bar .site-header {
+    top: 32px;
+}
+
+
+/* =========================
+   Header Inner
+========================= */
+
+.site-header__inner {
+    width: min(
+        calc(100% - 48px),
+        var(--content-width)
+    );
+
+    height: 100%;
+
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 32px;
+}
+
+
+/* =========================
+   Logo
+========================= */
+
+.site-logo {
+    display: flex;
+    align-items: baseline;
+
+    text-decoration: none;
+
+    font-weight: 900;
+
+    white-space: nowrap;
+}
+
+.site-logo__beat {
+    color: var(--color-text);
+
+    font-size: 22px;
+}
+
+.site-logo__lab {
+    color: var(--color-accent);
+
+    font-size: 22px;
+}
+
+.site-logo__sub {
+    margin-left: 8px;
+
+    color: var(--color-muted);
+
+    font-size: 11px;
+    font-weight: 400;
+}
+
+
+/* =========================
+   Navigation
+========================= */
+
+.site-nav {
+    display: flex;
+    align-items: center;
+
+    gap: 36px;
+}
+
+.site-nav a {
+    color: var(--color-muted);
+
+    font-size: 14px;
+    font-weight: 500;
+
+    text-decoration: none;
+
+    transition:
+        color 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.site-nav a:hover {
+    color: var(--color-text);
+}
+
+
+/* =========================
+   Header CTA
+========================= */
+
+.site-header__cta {
+    padding: 13px 22px;
+
+    background: var(--color-accent);
+
+    color: var(--color-text);
+
+    font-size: 14px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    white-space: nowrap;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.site-header__cta:hover {
+    background: var(--color-accent-hover);
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================
+   Tablet
+========================= */
+
+@media (max-width: 900px) {
+
+    .site-nav {
+        display: none;
+    }
+}
+
+
+/* =========================
+   Smartphone
+========================= */
+
+@media (max-width: 600px) {
+
+    .admin-bar .site-header {
+        top: 46px;
+    }
+
+    .site-header__inner {
+        width: min(
+            calc(100% - 32px),
+            var(--content-width)
+        );
+
+        gap: 16px;
+    }
+
+    .site-logo__beat,
+    .site-logo__lab {
+        font-size: 18px;
+    }
+
+    .site-logo__sub {
+        display: none;
+    }
+
+    .site-header__cta {
+        padding: 10px 14px;
+
+        font-size: 12px;
+    }
+}
