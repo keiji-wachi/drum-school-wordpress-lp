@@ -5,7 +5,13 @@
 
     <div class="section__inner">
 
-        <div class="section-heading">
+        <!-- =========================
+             Section Heading
+        ========================== -->
+        <div
+            class="section-heading"
+            data-reveal="up"
+        >
 
             <p class="section-heading__label">
                 FAQ
@@ -22,10 +28,20 @@
         </div>
 
 
+        <!-- =========================
+             FAQ List
+        ========================== -->
         <div class="faq__list">
 
-            <!-- FAQ 01 -->
-            <div class="faq-item">
+
+            <!-- =========================
+                 FAQ 01
+            ========================== -->
+            <div
+                class="faq-item"
+                data-reveal="up"
+                data-reveal-delay="0"
+            >
 
                 <button
                     type="button"
@@ -33,6 +49,7 @@
                     aria-expanded="false"
                     aria-controls="faq-answer-1"
                 >
+
                     <span>
                         楽器は持っていなくても大丈夫ですか？
                     </span>
@@ -43,13 +60,16 @@
                     >
                         +
                     </span>
+
                 </button>
+
 
                 <div
                     id="faq-answer-1"
                     class="faq-item__answer"
                     hidden
                 >
+
                     <div class="faq-item__answer-inner">
 
                         <p>
@@ -59,13 +79,20 @@
                         </p>
 
                     </div>
+
                 </div>
 
             </div>
 
 
-            <!-- FAQ 02 -->
-            <div class="faq-item">
+            <!-- =========================
+                 FAQ 02
+            ========================== -->
+            <div
+                class="faq-item"
+                data-reveal="up"
+                data-reveal-delay="80"
+            >
 
                 <button
                     type="button"
@@ -73,6 +100,7 @@
                     aria-expanded="false"
                     aria-controls="faq-answer-2"
                 >
+
                     <span>
                         体験レッスンの料金はかかりますか？
                     </span>
@@ -83,13 +111,16 @@
                     >
                         +
                     </span>
+
                 </button>
+
 
                 <div
                     id="faq-answer-2"
                     class="faq-item__answer"
                     hidden
                 >
+
                     <div class="faq-item__answer-inner">
 
                         <p>
@@ -99,13 +130,20 @@
                         </p>
 
                     </div>
+
                 </div>
 
             </div>
 
 
-            <!-- FAQ 03 -->
-            <div class="faq-item">
+            <!-- =========================
+                 FAQ 03
+            ========================== -->
+            <div
+                class="faq-item"
+                data-reveal="up"
+                data-reveal-delay="160"
+            >
 
                 <button
                     type="button"
@@ -113,6 +151,7 @@
                     aria-expanded="false"
                     aria-controls="faq-answer-3"
                 >
+
                     <span>
                         大人になってから始めても上達できますか？
                     </span>
@@ -123,13 +162,16 @@
                     >
                         +
                     </span>
+
                 </button>
+
 
                 <div
                     id="faq-answer-3"
                     class="faq-item__answer"
                     hidden
                 >
+
                     <div class="faq-item__answer-inner">
 
                         <p>
@@ -139,13 +181,20 @@
                         </p>
 
                     </div>
+
                 </div>
 
             </div>
 
 
-            <!-- FAQ 04 -->
-            <div class="faq-item">
+            <!-- =========================
+                 FAQ 04
+            ========================== -->
+            <div
+                class="faq-item"
+                data-reveal="up"
+                data-reveal-delay="240"
+            >
 
                 <button
                     type="button"
@@ -153,6 +202,7 @@
                     aria-expanded="false"
                     aria-controls="faq-answer-4"
                 >
+
                     <span>
                         レッスンの振替は可能ですか？
                     </span>
@@ -163,13 +213,16 @@
                     >
                         +
                     </span>
+
                 </button>
+
 
                 <div
                     id="faq-answer-4"
                     class="faq-item__answer"
                     hidden
                 >
+
                     <div class="faq-item__answer-inner">
 
                         <p>
@@ -179,13 +232,20 @@
                         </p>
 
                     </div>
+
                 </div>
 
             </div>
 
 
-            <!-- FAQ 05 -->
-            <div class="faq-item">
+            <!-- =========================
+                 FAQ 05
+            ========================== -->
+            <div
+                class="faq-item"
+                data-reveal="up"
+                data-reveal-delay="320"
+            >
 
                 <button
                     type="button"
@@ -193,6 +253,7 @@
                     aria-expanded="false"
                     aria-controls="faq-answer-5"
                 >
+
                     <span>
                         どんなジャンルの音楽でも習えますか？
                     </span>
@@ -203,13 +264,16 @@
                     >
                         +
                     </span>
+
                 </button>
+
 
                 <div
                     id="faq-answer-5"
                     class="faq-item__answer"
                     hidden
                 >
+
                     <div class="faq-item__answer-inner">
 
                         <p>
@@ -219,6 +283,7 @@
                         </p>
 
                     </div>
+
                 </div>
 
             </div>

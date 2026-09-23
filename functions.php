@@ -25,9 +25,6 @@ require_once get_template_directory()
    Assets
 ================================================== */
 
-/**
- * テーマで使用するCSS / JavaScriptを読み込む。
- */
 function drum_school_lp_enqueue_assets() {
 
     $theme_uri =
@@ -42,6 +39,7 @@ function drum_school_lp_enqueue_assets() {
         'base',
         'layout',
         'components',
+        'motion',
         'header',
         'hero',
         'trial-bar',
@@ -76,11 +74,6 @@ function drum_school_lp_enqueue_assets() {
        Thanks Page CSS
     ========================== */
 
-    /**
-     * サンクスページ専用CSS。
-     *
-     * /thanks/ の場合のみ読み込む。
-     */
     if (is_page('thanks')) {
 
         wp_enqueue_style(
@@ -112,7 +105,33 @@ function drum_school_lp_enqueue_assets() {
 
 
     /**
-     * FAQ開閉処理。
+     * Mobile Header Navigation.
+     */
+    wp_enqueue_script(
+        'drum-school-header',
+        $theme_uri
+            . '/assets/js/header.js',
+        array(),
+        '1.0.0',
+        true
+    );
+
+
+    /**
+     * Scroll Reveal.
+     */
+    wp_enqueue_script(
+        'drum-school-reveal',
+        $theme_uri
+            . '/assets/js/reveal.js',
+        array(),
+        '1.0.0',
+        true
+    );
+
+
+    /**
+     * FAQ Accordion.
      */
     wp_enqueue_script(
         'drum-school-faq',
@@ -139,10 +158,8 @@ function drum_school_lp_enqueue_assets() {
 
 
     /**
-     * JavaScriptへWordPress側のURLを渡す。
-     *
-     * JSにローカルURLや本番URLを
-     * 直接書かないための設定。
+     * JavaScriptへ
+     * サンクスページURLを渡す。
      */
     wp_localize_script(
         'drum-school-multi-step-form',
@@ -165,15 +182,8 @@ add_action(
    Theme Setup
 ================================================== */
 
-/**
- * WordPressテーマ初期設定。
- */
 function drum_school_lp_setup() {
 
-    /**
-     * ページタイトルを
-     * WordPress側で管理する。
-     */
     add_theme_support(
         'title-tag'
     );
